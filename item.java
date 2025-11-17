@@ -6,7 +6,7 @@ public class Item {
     double weight;
     Random random = new Random();
 
-    //Item constructors
+    // Default constructor
     public Item(){
         //FIXME (make the first number never 5)
         serialNum = random.nextInt(9000) + 1000;
@@ -14,6 +14,7 @@ public class Item {
         weight = 0.0;
     }
 
+    // Constructor with inputs
     public Item(boolean cold, double kilograms){
         coldCheck = cold;
         weight = kilograms;
@@ -26,11 +27,13 @@ public class Item {
             int finalID = Integer.valueOf(combindID);
             serialNum = finalID;
         }
+        // If Item is not cold
         else{
             serialNum = random.nextInt(9000) + 1000;
         }
     }
 
+    // Item methods
     public int getSerialNum(){
         return serialNum;
     }
@@ -39,6 +42,7 @@ public class Item {
         return weight;
     }
 
+    // Just for testing
     public static void main(String[] args){
         Item it = new Item();
         Item em = new Item(true, 12.5);
