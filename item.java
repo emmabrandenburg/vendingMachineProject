@@ -10,21 +10,7 @@ public class Item {
     public Item(){
         coldCheck = false;
         weight = 0.0;
-
-        // Finding first digit and making sure its not 5.
-        int firstNum = random.nextInt(9) + 1;
-        while(firstNum == 5){
-            firstNum = random.nextInt(9) + 1;
-        }
-
-        //Fiding and appeneding the rest of the digits
-        int tempID = random.nextInt(900) + 100;
-        String stringID = String.valueOf(tempID);
-        String combindID = firstNum + stringID;
-        int finalID = Integer.valueOf(combindID);
-        serialNum = finalID;
-        
-        serialNum = random.nextInt(9000) + 1000;
+        serialNum = 0000;
     }
 
     // Constructor with inputs
@@ -40,10 +26,26 @@ public class Item {
             int finalID = Integer.valueOf(combindID);
             serialNum = finalID;
         }
+        
         // If Item is not cold
         else{
+            
+            // Finding first digit and making sure its not 5.
+            int firstNum = random.nextInt(9) + 1;
+            while(firstNum == 5){
+                firstNum = random.nextInt(9) + 1;
+            }
+
+            //Fiding and appeneding the rest of the digits
+            int tempID = random.nextInt(900) + 100;
+            String stringID = String.valueOf(tempID);
+            String combindID = firstNum + stringID;
+            int finalID = Integer.valueOf(combindID);
+            serialNum = finalID;
+            
             serialNum = random.nextInt(9000) + 1000;
         }
+
     }
 
     // Item methods
