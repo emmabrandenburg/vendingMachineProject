@@ -8,10 +8,23 @@ public class Item {
 
     // Default constructor
     public Item(){
-        //FIXME (make the first number never 5)
-        serialNum = random.nextInt(9000) + 1000;
         coldCheck = false;
         weight = 0.0;
+
+        // Finding first digit and making sure its not 5.
+        int firstNum = random.nextInt(9) + 1;
+        while(firstNum == 5){
+            firstNum = random.nextInt(9) + 1;
+        }
+
+        //Fiding and appeneding the rest of the digits
+        int tempID = random.nextInt(900) + 100;
+        String stringID = String.valueOf(tempID);
+        String combindID = firstNum + stringID;
+        int finalID = Integer.valueOf(combindID);
+        serialNum = finalID;
+        
+        serialNum = random.nextInt(9000) + 1000;
     }
 
     // Constructor with inputs
@@ -40,17 +53,6 @@ public class Item {
 
     public double getWeight(){
         return weight;
-    }
-
-    // Just for testing
-    public static void main(String[] args){
-        Item it = new Item();
-        Item em = new Item(true, 12.5);
-
-        System.out.println(it.getSerialNum());
-        System.out.println(it.getWeight());
-        System.out.println(em.getSerialNum());
-        System.out.println(em.getWeight());
     }
 }
 
