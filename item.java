@@ -33,8 +33,6 @@ public class Item {
         }
 
         statusCode = findStatusCode(serialNum);
-
-
     }
 
     // public Item methods
@@ -66,7 +64,7 @@ public class Item {
             itemArrayData[3] = "room-temp";
         }
 
-        String ItemData = String.join(",", itemArrayData);
+        String ItemData = String.join(", ", itemArrayData);
 
         return ItemData;
     }
@@ -101,7 +99,7 @@ public class Item {
             return serialNum;
         }
     }
-
+    //find status code based off of serialNum
     private String findStatusCode(int serial){
         if(serial % 2 == 0){
             return "s1";
