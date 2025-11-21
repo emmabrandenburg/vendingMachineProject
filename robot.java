@@ -11,8 +11,6 @@ class robot
 	int lowZBound = 1;
 	item it;
 
-	Scanner scan = new Scanner(System.in);
-
 	public robot()
 	{
 		xPos = 0;
@@ -23,138 +21,49 @@ class robot
 
 	public void moveLeft()
 	{
-		System.out.println("Number of places to move: ");
-		int x = scan.nextInt();
-		
-		if (x < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
-		else if (xPos - x >= lowXBound)
+		if (xPos - x >= lowXBound)
 		{
 			xPos -= x;
-		}
-		else
-		{
-			System.out.println("You can’t move farther than that");
 		}
 	}
 
 	public void moveRight()
 	{
-		System.out.println("Number of places to move: ");
-		int x = scan.nextInt();
-
-		if (x < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
-		else if (xPos + x <= highXBound)
+		if (xPos + x <= highXBound)
 		{
 			xPos += x;
-		}
-		else
-		{
-			System.out.println("You can’t move farther than that");
 		}
 	}
 
 	public void moveForward()
 	{
-		System.out.println("Number of places to move: ");
-		int y = scan.nextInt();
-
-		if (y < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
-		else if (yPos + y <= highYBound)
+		if (yPos + y <= highYBound)
 		{
 			yPos += y;
-		}
-		else
-		{
-			System.out.println("You can’t move farther than that");
 		}
 	}
 
 	public void moveBackward()
 	{
-		System.out.println("Number of places to move: ");
-		int y = scan.nextInt();
-
-		if (y < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
 		else if (yPos - y >= lowYBound)
 		{
 			yPos -= y;
-		}
-		else
-		{
-			System.out.println("You can’t move farther than that");
 		}
 	}
 
 	public void raiseArm()
 	{
-		int z = scan.nextInt();
-
-		if (z < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
-		else if (zPos + z <= highZBound)
+		if (zPos + z <= highZBound)
 		{
 			zPos += z;
-		}
-		else
-		{
-			System.out.println("You can’t raise the arm more than that");
 		}
 	}
 
 	public void lowerArm()
 	{
-		int z = scan.nextInt();
-
-		if (z < 0)
-		{
-			System.out.println("You can’t enter a negative number");
-		}
-		else if (zPos - z >= lowZBound)
+		if (zPos - z >= lowZBound)
 		{
 			zPos -= z;
-		}
-		else
-		{
-			System.out.println("You can’t lower the arm more than that");
-		}
-	}
-
-	public void hasItem()
-	{
-		if (it != null)
-		{
-			System.out.println("Yes");
-		}
-		else
-		{
-			System.out.println("No");
-		}
-	}
-
-	public void checkItemID()
-	{
-		if (it != null)
-		{
-			String itemID = it.getId();
-			System.out.println("The ID number of the item is " + itemID);
-		}
-		else
-		{
-			System.out.println("You don’t have an item");
 		}
 	}
 	
@@ -178,78 +87,91 @@ class robot
 					}
 				}
 			}
-			else
-			{
-				System.out.println("You are not at the right position");
-			}
-		}
-		else
-		{
-			System.out.println("You already have an item");
 		}
 	}
 	
 	public void putItem()
 	{
 		station st1 = new station();
+		station5 st5 = new station5();
+		station7 st7 = new station7();
 		boolean xInStation = xPos == st1.xPos;
 		boolean yInStation = yPos == st1.yPos;
 		boolean zInStation = zPos == st1.zPos;
 		boolean correctPos = xInStation && yInStation & zInStation;
+		boolean xInStation5 = xPos == st5.xPos;
+		boolean yInStation5 = yPos == st5.yPos;
+		boolean zInStation5 = zPos == st5.zPos;
+		boolean correctPos5 = xInStation && yInStation & zInStation;
+		boolean xInStation7 = xPos == st7.xPos;
+		boolean yInStation7 = yPos == st7.yPos;
+		boolean zInStation7 = zPos == st7.zPos;
+		boolean correctPos7 = xInStation && yInStation & zInStation;
 		int st1Capacity = st1.getCapacity();
-		
+		int st5Capacity = st5.getCapacity();
+		int st7Capacity = st7.getCapacity();
+
 		if (it != null)
 		{
-			if (correctPos)
+			if (it.coldCheck == true)
 			{
-				if (st1 == new station5())
+				if (correctPos5)
 				{
-					if (it.getId().charAt(0) == '5')
+					for (int i = 0; i < st5Capacity; i++)
 					{
-						for (int i = 0; i < st1Capacity; i++)
+						if (st5[i] == null)
 						{
-							if (st1.it[i] == null)
-							{
-								st1.it[i] = new item();
-								it = null;
-								System.out.println("You placed an item in station 5");
-								break;
-							}
+							st5.it[i] = new item();
+							it = null;
+							break;
 						}
 					}
-					else
-					{
-						System.out.println("You can't place this item in station 5");
-						System.out.println("The first digit should be equal to 5");
-					}
-				}
-				else if (st1 == new station7())
+				}	
+			}
+			else if (it.getWeight() < 50)
+			{
+				if (correctPos7)
 				{
-					if (it.getWeight() < 50)
+					for (int i = 0; i < st7Capacity; i++)
 					{
-						for (int i = 0; i < st1Capacity; i++)
+						if (st7[i] == null)
 						{
-							if (st1.it[i] == null)
-							{
-								st1.it[i] = new item();
-								it = null;
-								System.out.println("You placed an item in station 7");
-								break;
-							}
+							st7.it[i] = new item();
+							it = null;
+							break;
 						}
-					}
-					else
-					{
-						System.out.println("You can't place this item in station 7");
-						System.out.println("The item's weight should be less than 50 kilograms");
 					}
 				}
 			}
-			System.out.println("You aren't in the right place");
-		}
-		else
-		{
-			System.out.println("You don't have an item");
+			else if (it.getStatusCode().equals("s1"))
+			{
+				if (correctPos)
+				{
+					for (int i = 0; i < st1Capacity; i++)
+					{
+						if (st1[i] == null)
+						{
+							st1.it[i] = new item();
+							it = null;
+							break;
+						}
+					}
+				}
+			}
+			else
+			{
+				if (correctPos)
+				{
+					for (int i = 0; i < st1Capacity; i++)
+					{
+						if (st1[i] == null)
+						{
+							st1.it[i] = new item();
+							it = null;
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
-}
