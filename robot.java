@@ -273,9 +273,30 @@ class robot
 	{
 		String itemName;
 		int amount;
-		
+		boolean isCold;
+		double weight;
+		item it2;
+		pickUpStation pst2 = new pickUpStation();
 		
 		Scanner scan = new Scanner(System.in);
 
-		
+		System.out.println("Enter the name of the item: ");
+		itemName = scan.next();
+		System.out.println("Enter the amount to store away: ");
+		amount = scan.nextInt();
+		System.out.println("Enter true if it's cold or false if it's not: ");
+		isCold = scan.nextBoolean();
+		System.out.println("Enter the weight: ");
+		weight = scan.nextDouble();
+
+		it2 = new item(itemName, isCold, weight);
+
+		pst2.it2[] = new item[amount];
+
+		for (int i = 0; i < amount; i++)
+		{
+			pickUpItem();
+			putItem();
+		}
+	}
 }
