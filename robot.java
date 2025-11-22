@@ -131,9 +131,9 @@ class robot
 					
 				for (int i = 0; i < st1Capacity; i++)
 				{
-					if (st5[i] == null)
+					if (st5.it[i] == null)
 					{
-						st5.it[i] = new item();
+						st5.it[i] = it;
 						it = null;
 						break;
 					}
@@ -168,9 +168,9 @@ class robot
 				
 				for (int i = 0; i < st1Capacity; i++)
 				{
-					if (st7[i] == null)
+					if (st7.it[i] == null)
 					{
-						st7.it[i] = new item();
+						st7.it[i] = it;
 						it = null;
 						break;
 					}
@@ -195,41 +195,52 @@ class robot
 					moveBackward();
 				}
 
-				xPos = 1;
+				zPos = 1;
 				
-				for (int i = xPos; i <= lSec.length; i++)
+				for (int i = zPos; i <= lSec.length; i++)
 				{
 					for (int j = 0; j < st1Capacity; i++)
 					{
-						lSec.st1[i].
+						if (lSec.st1[i].it[j] == null)
+						{
+							lSec.st1[i].it[j] = it;
+							it = null;
+							break;
+						}
+					}
 				}
 			}
 			else
 			{
-				while (xPos > st7.getXPos())
+				while (xPos > rSec.getXPos())
 				{
 					moveLeft();
 				}
-				while (xPos < st7.getXPos())
+				while (xPos < rSec.getXPos())
 				{
 					moveRight();
 				}
-				while (yPos < st7.getYPos())
+				while (yPos < rSec.getYPos())
 				{
 					moveForward();
 				}
-				while (yPos > st7.getYPos())
+				while (yPos > rSec.getYPos())
 				{
 					moveBackward();
 				}
-					
-				for (int i = 0; i < st1Capacity; i++)
+
+				zPos = 1;
+				
+				for (int i = zPos; i <= lSec.length; i++)
 				{
-					if (st1[i] == null)
+					for (int j = 0; j < st1Capacity; i++)
 					{
-						st1.it[i] = new item();
-						it = null;
-						break;
+						if (lSec.st1[i].it[j] == null)
+						{
+							lSec.st1[i].it[j] = it;
+							it = null;
+							break;
+						}
 					}
 				}
 			}
