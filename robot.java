@@ -3,8 +3,8 @@ class robot
 	int xPos;
 	int yPos;
 	int zPos;
-	int highXBound = 5;
-	int highYBound = 5;
+	int highXBound = 2;
+	int highYBound = 1;
 	int highZBound = 4;
 	int lowXBound = 0;
 	int lowYBound = 0;
@@ -268,4 +268,14 @@ class robot
 			}
 		}
 	}
+
+	public void promptUser()
+	{
+		String itemName;
+		int amount;
+		
+		
+		Scanner scan = new Scanner(System.in);
+
+		
 }
