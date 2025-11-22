@@ -7,8 +7,13 @@ class leftSection
 	public leftSection()
 	{
 		xPos = 0;
-		yPos = 0;
+		yPos = 1;
 		st = new station[4];
+		
+		for (int i = 0; i < st.length; i++)
+		{
+			st[i] = new station();
+		}
 
 		for (int i = 0; i < 4; i++)
 		{
