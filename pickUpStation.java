@@ -2,6 +2,9 @@ class pickUpStation extends station
 {
 	public pickUpStation()
 	{
+		xPos = 1;
+		yPos = 0;
+		zPos = 1;
 		it = new item[64];
 		capacity = it.length;
 	}
