@@ -52,6 +52,10 @@ public class Item {
         return statusCode;
     }
 
+    public boolean coldCheck(){
+        return coldCheck;
+    }
+
     public String getItemData(){
         String[] itemArrayData = new String[4];
         itemArrayData[0] = itemName;
