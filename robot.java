@@ -71,20 +71,42 @@ class robot
 	{
 		pickUpStation pst = new pickUpStation();
 		int pstCapacity = pst.getCapacity();
-		
+
 		if (it == null)
 		{
-			if (xPos == pst.getXPos() && yPos == pst.getYPos())
+			while (xPos > pst.getXPos())
 			{
-				for (int i = 0; i < pstCapacity; i++)
+				moveLeft();
+			}
+			while (xPos < pst.getXPos())
+			{
+				moveRight();
+			}
+			while (yPos < pst.getYPos())
+			{
+				moveForward();
+			}
+			while (yPos > pst.getYPos())
+			{
+				moveBackward();
+			}
+			while (zPos < pst.getZPos())
+			{
+				raiseArm();
+			}
+			while (zPos > pst.getZPos())
+			{
+				lowerArm();
+			}
+
+			for (int i = 0; i < pstCapacity; i++)
+			{
+				if (pst.it[i] != null)
 				{
-					if (pst.it[i] != null)
-					{
-						it = new item();
-						pst.it[i] = null;
-						System.out.println("You have recieved an item");
-						break;
-					}
+					it = pst.it[i];
+					pst.it[i] = null;
+					System.out.println("You have recieved an item");
+					break;
 				}
 			}
 		}
