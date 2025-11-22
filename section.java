@@ -4,7 +4,3 @@ class section
   int yPos;
   int zPos;
   station st[];
-
-  public section(int c)
-  {
-    
