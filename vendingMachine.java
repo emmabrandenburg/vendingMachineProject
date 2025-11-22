@@ -1,7 +1,25 @@
+/**
+ * FIXME
+ * FIXME
+ * 
+ * Emma Brandenburg & _____
+ * Created: 10/6/25
+ * Modified: 
+ * 11/22/25 - Added methods to vendingMachine
+ * 
+ * Purpose: Calculate the wage of employees.
+ * Copyright 2025 by Emma Brandenburg & ____
+ *
+ * Client: Professor Anwari CSC223
+ * 
+ * Components: FIXME
+ */
+
 import java.util.Scanner;
 
 public class vendingMachine {
     Arm arm;
+    Item[] currItems;
 
     public vendingMachine(){
         arm = new Arm();
@@ -10,7 +28,9 @@ public class vendingMachine {
 
     // Empty 5th station into the refrigeration container
     public void code25(){
-
+        /*
+        
+        */
     }
 
     public void createMachine(){
@@ -44,7 +64,9 @@ public class vendingMachine {
         answerCold = scnr.next().charAt(0);
         System.out.println("How many items would you like to create?");
         i = scnr.nextInt();
+    }
 
-        
+    public void storeItems(){
+
     }
 }

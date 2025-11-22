@@ -12,9 +12,15 @@ public class Arm {
 
     // Methods
     public void move(int newX, int newY){
-
+        String directionMoved;
+        int spacesMoved;
+        
+        /* 
         currX = newX;
         currY = newY;
+        */
+
+
     }
 
     public void grabItem(Item grabbedItem){

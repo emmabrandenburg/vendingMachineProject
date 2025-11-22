@@ -4,15 +4,15 @@ class station
 	int yPos;
 	int zPos;
 	int capacity;
-	Item it[];
+	Item itemList[];
 
 	public station()
 	{
 		xPos = 0;
 		yPos = 0;
 		zPos = 1;
-		it = new Item[8];
-		capacity = it.length;
+		itemList = new Item[8];
+		capacity = itemList.length;
 	}
 
 	//sets it to the same x coordinate of left or right section
