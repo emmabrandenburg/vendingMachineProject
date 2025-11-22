@@ -17,4 +17,14 @@ class leftSection
 			st[i].setZPos(i+1);
 		}
 	}
+
+	public int getXPos()
+	{
+		return xPos;
+	}
+
+	public int getYPos()
+	{
+		return yPos;
+	}
 }
