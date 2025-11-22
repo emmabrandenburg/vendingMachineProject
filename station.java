@@ -1,3 +1,4 @@
+//station class where constructors and methods are defined
 class station
 {
 	int xPos;
@@ -5,7 +6,9 @@ class station
 	int zPos;
 	int capacity;
 	Item itemList[];
+	int stationNum;
 
+	//creates defualt constructor for station object
 	public station()
 	{
 		xPos = 0;
@@ -13,6 +16,7 @@ class station
 		zPos = 1;
 		itemList = new Item[8];
 		capacity = itemList.length;
+		stationNum = 1;
 	}
 
 	//sets it to the same x coordinate of left or right section
@@ -32,24 +36,67 @@ class station
   	{
     	zPos += z;
   	}
-  	
+
+	//returns xPos
   	public int getXPos()
   	{
   		return xPos;
   	}
-  	
+
+	//returns yPos
   	public int getYPos()
   	{
   		return yPos;
   	}
-  	
+
+	//returns zPos
   	public int getZPos()
   	{
   		return zPos;
   	}
-  	
+
+	//returns length of itemList
   	public int getCapacity()
   	{
   		return capacity;
   	}
+
+	//returns true if there is space for an item
+	public boolean numItemCheck()
+	{
+		for (int i = 0; i < capacity; i++)
+		{
+			if (itemList[i] == null)
+			{
+				return true;
+			}
+		}
+	}
+
+	//returns position of item slot
+	public int findItemSlot()
+	{
+		for (int i = 0; i < capacity; i++)
+		{
+			if (numItemCheck() == true)
+			{
+				return i + 1;
+			}
+		}
+		return -1;
+	}
+
+	//returns the station number of station
+	public int getStationNum()
+	{
+		return stationNum;
+	}
+
+	//assigns special stations their needed values
+	private void stationAssign(int xLoc, int yLoc, int zLoc)
+	{
+		xPos = xLoc;
+		yPos = yLoc;
+		zPos = zLoc;
+	}
 }
