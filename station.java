@@ -3,7 +3,6 @@ class station
 {
 	int xPos;
 	int yPos;
-	int zPos;
 	int capacity;
 	Item itemList[];
 	int stationNum;
@@ -31,12 +30,6 @@ class station
     	yPos += y;
   	}	
 
-	//used to level the stations from 1 to 4
-  	public void setZPos(int z)
-  	{
-    	zPos += z;
-  	}
-
 	//returns xPos
   	public int getXPos()
   	{
@@ -47,12 +40,6 @@ class station
   	public int getYPos()
   	{
   		return yPos;
-  	}
-
-	//returns zPos
-  	public int getZPos()
-  	{
-  		return zPos;
   	}
 
 	//returns length of itemList
@@ -71,6 +58,7 @@ class station
 				return true;
 			}
 		}
+		return false;
 	}
 
 	//returns position of item slot
@@ -93,10 +81,9 @@ class station
 	}
 
 	//assigns special stations their needed values
-	private void stationAssign(int xLoc, int yLoc, int zLoc)
+	private void stationAssign(int xLoc, int yLoc)
 	{
 		xPos = xLoc;
 		yPos = yLoc;
-		zPos = zLoc;
 	}
 }
