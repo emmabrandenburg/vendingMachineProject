@@ -21,13 +21,13 @@ class station
 	//sets it to the same x coordinate of left or right section
   	public void setXPos(int x)
   	{
-    	xPos += x;
+    	xPos = x;
   	}
 
 	//sets it to the same y coordinate of left or right section
   	public void setYPos(int y)
   	{
-    	yPos += y;
+    	yPos = y;
   	}	
 
 	//returns xPos
