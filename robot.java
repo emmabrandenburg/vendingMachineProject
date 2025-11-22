@@ -92,86 +92,147 @@ class robot
 	
 	public void putItem()
 	{
+		leftSection lSec = new leftSection();
+		rightSection rSec = new rightSection();
 		station st1 = new station();
 		station5 st5 = new station5();
 		station7 st7 = new station7();
-		boolean xInStation = xPos == st1.xPos;
-		boolean yInStation = yPos == st1.yPos;
-		boolean zInStation = zPos == st1.zPos;
-		boolean correctPos = xInStation && yInStation & zInStation;
-		boolean xInStation5 = xPos == st5.xPos;
-		boolean yInStation5 = yPos == st5.yPos;
-		boolean zInStation5 = zPos == st5.zPos;
-		boolean correctPos5 = xInStation && yInStation & zInStation;
-		boolean xInStation7 = xPos == st7.xPos;
-		boolean yInStation7 = yPos == st7.yPos;
-		boolean zInStation7 = zPos == st7.zPos;
-		boolean correctPos7 = xInStation && yInStation & zInStation;
-		int st1Capacity = st1.getCapacity();
-		int st5Capacity = st5.getCapacity();
-		int st7Capacity = st7.getCapacity();
 
+		int st1Capacity = st1.getCapacity();
+		
 		if (it != null)
 		{
 			if (it.coldCheck == true)
 			{
-				if (correctPos5)
+				while (xPos > st5.getXPos())
 				{
-					for (int i = 0; i < st5Capacity; i++)
+					moveLeft();
+				}
+				while (xPos < st5.getXPos())
+				{
+					moveRight();
+				}
+				while (yPos < st5.getYPos())
+				{
+					moveForward();
+				}
+				while (yPos > st5.getYPos())
+				{
+					moveBackward();
+				}
+				while (zPos < st5.getZPos())
+				{
+					raiseArm();
+				}
+				while (zPos > st5.getZPos())
+				{
+					lowerArm();
+				}
+					
+				for (int i = 0; i < st1Capacity; i++)
+				{
+					if (st5[i] == null)
 					{
-						if (st5[i] == null)
-						{
-							st5.it[i] = new item();
-							it = null;
-							break;
-						}
+						st5.it[i] = new item();
+						it = null;
+						break;
 					}
 				}	
 			}
 			else if (it.getWeight() < 50)
 			{
-				if (correctPos7)
+				while (xPos > st7.getXPos())
 				{
-					for (int i = 0; i < st7Capacity; i++)
+					moveLeft();
+				}
+				while (xPos < st7.getXPos())
+				{
+					moveRight();
+				}
+				while (yPos < st7.getYPos())
+				{
+					moveForward();
+				}
+				while (yPos > st7.getYPos())
+				{
+					moveBackward();
+				}
+				while (zPos < st7.getZPos())
+				{
+					raiseArm();
+				}
+				while (zPos > st7.getZPos())
+				{
+					lowerArm();
+				}
+				
+				for (int i = 0; i < st1Capacity; i++)
+				{
+					if (st7[i] == null)
 					{
-						if (st7[i] == null)
-						{
-							st7.it[i] = new item();
-							it = null;
-							break;
-						}
+						st7.it[i] = new item();
+						it = null;
+						break;
 					}
 				}
 			}
 			else if (it.getStatusCode().equals("s1"))
 			{
-				if (correctPos)
+				while (xPos > lSec.getXPos())
 				{
-					for (int i = 0; i < st1Capacity; i++)
+					moveLeft();
+				}
+				while (xPos < lSec.getXPos())
+				{
+					moveRight();
+				}
+				while (yPos < lSec.getYPos())
+				{
+					moveForward();
+				}
+				while (yPos > lSec.getYPos())
+				{
+					moveBackward();
+				}
+
+				xPos = 1;
+				
+				for (int i = xPos; i <= lSec.length; i++)
+				{
+					for (int j = 0; j < st1Capacity; i++)
 					{
-						if (st1[i] == null)
-						{
-							st1.it[i] = new item();
-							it = null;
-							break;
-						}
-					}
+						lSec.st1[i].
 				}
 			}
 			else
 			{
-				if (correctPos)
+				while (xPos > st7.getXPos())
 				{
-					for (int i = 0; i < st1Capacity; i++)
+					moveLeft();
+				}
+				while (xPos < st7.getXPos())
+				{
+					moveRight();
+				}
+				while (yPos < st7.getYPos())
+				{
+					moveForward();
+				}
+				while (yPos > st7.getYPos())
+				{
+					moveBackward();
+				}
+					
+				for (int i = 0; i < st1Capacity; i++)
+				{
+					if (st1[i] == null)
 					{
-						if (st1[i] == null)
-						{
-							st1.it[i] = new item();
-							it = null;
-							break;
-						}
+						st1.it[i] = new item();
+						it = null;
+						break;
 					}
 				}
 			}
 		}
 	}
+}
