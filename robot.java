@@ -9,7 +9,7 @@ class robot
 	int lowXBound = 0;
 	int lowYBound = 0;
 	int lowZBound = 1;
-	item it;
+	Item it;
 
 	public robot()
 	{
@@ -21,50 +21,71 @@ class robot
 
 	public void moveLeft()
 	{
-		if (xPos - x >= lowXBound)
+		if (xPos - 1 >= lowXBound)
 		{
-			xPos -= x;
+			xPos --;
+			System.out.println("You've moved left to (" + xPos + ", " + yPos + ")");
 		}
 	}
 
 	public void moveRight()
 	{
-		if (xPos + x <= highXBound)
+		if (xPos + 1 <= highXBound)
 		{
-			xPos += x;
+			xPos ++;
+			System.out.println("You've moved right to (" + xPos + ", " + yPos + ")");
 		}
 	}
 
 	public void moveForward()
 	{
-		if (yPos + y <= highYBound)
+		if (yPos - 1 <= highYBound)
 		{
-			yPos += y;
+			yPos ++;
+			System.out.println("You've moved forward to (" + xPos + ", " + yPos + ")");
 		}
 	}
 
 	public void moveBackward()
 	{
-		else if (yPos - y >= lowYBound)
+		if (yPos - 1 >= lowYBound)
 		{
-			yPos -= y;
+			yPos --;
+			System.out.println("You've moved backward to (" + xPos + ", " + yPos + ")");
 		}
 	}
 
 	public void raiseArm()
 	{
-		if (zPos + z <= highZBound)
+		if (zPos + 1 <= highZBound)
 		{
-			zPos += z;
+			zPos ++;
+			System.out.println("You've raised the arm to level " + zPos);
 		}
 	}
 
 	public void lowerArm()
 	{
-		if (zPos - z >= lowZBound)
+		if (zPos - 1>= lowZBound)
 		{
-			zPos -= z;
+			zPos --;
+			System.out.println("You've lowered the arm to level " + zPos);
 		}
+	}
+	
+	public int getXPos()
+	{
+		return xPos;
+	}
+	
+	public int getYPos()
+	{
+		return yPos;
+	}
+	
+	public int getZPos()
+	{
+		return zPos;
 	}
 	
 	public void pickUpItem()
@@ -105,7 +126,7 @@ class robot
 				{
 					it = pst.it[i];
 					pst.it[i] = null;
-					System.out.println("You have recieved an item");
+					System.out.println("You have recieved item " + it.getSerialNum());
 					break;
 				}
 			}
@@ -155,6 +176,7 @@ class robot
 				{
 					if (st5.it[i] == null)
 					{
+						System.out.println("You've put item " + it.getSerialNum() + " in station 5");
 						st5.it[i] = it;
 						it = null;
 						break;
@@ -192,6 +214,7 @@ class robot
 				{
 					if (st7.it[i] == null)
 					{
+						System.out.println("You've put item " + it.getSerialNum() + " in station 7");
 						st7.it[i] = it;
 						it = null;
 						break;
@@ -219,13 +242,14 @@ class robot
 
 				zPos = 1;
 				
-				for (int i = zPos; i <= lSec.length; i++)
+				for (int i = zPos; i <= lSec.st.length; i++)
 				{
 					for (int j = 0; j < st1Capacity; i++)
 					{
-						if (lSec.st1[i].it[j] == null)
+						if (lSec.st[i].it[j] == null)
 						{
-							lSec.st1[i].it[j] = it;
+							System.out.println("You've put item " + it.getSerialNum() + " in a left station");
+							lSec.st[i].it[j] = it;
 							it = null;
 							break;
 						}
@@ -253,13 +277,14 @@ class robot
 
 				zPos = 1;
 				
-				for (int i = zPos; i <= lSec.length; i++)
+				for (int i = zPos; i <= lSec.st.length; i++)
 				{
 					for (int j = 0; j < st1Capacity; i++)
 					{
-						if (lSec.st1[i].it[j] == null)
+						if (lSec.st[i].it[j] == null)
 						{
-							lSec.st1[i].it[j] = it;
+							System.out.println("You've put item " + it.getSerialNum() + " in a right station");
+							lSec.st[i].it[j] = it;
 							it = null;
 							break;
 						}
@@ -275,24 +300,27 @@ class robot
 		int amount;
 		boolean isCold;
 		double weight;
-		item it2;
 		pickUpStation pst2 = new pickUpStation();
 		
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("Enter the name of the item: ");
+		System.out.print("Enter the name of the item: ");
 		itemName = scan.next();
-		System.out.println("Enter the amount to store away: ");
+		System.out.print("Enter the amount to store away: ");
 		amount = scan.nextInt();
-		System.out.println("Enter true if it's cold or false if it's not: ");
+		System.out.print("Enter true if it's cold or false if it's not: ");
 		isCold = scan.nextBoolean();
-		System.out.println("Enter the weight: ");
+		System.out.print("Enter the weight: ");
 		weight = scan.nextDouble();
+		System.out.println();
 
-		it2 = new item(itemName, isCold, weight);
-
-		pst2.it2[] = new item[amount];
-
+		pst2.it = new Item[amount];
+		
+		for (int i = 0; i < amount; i++)
+		{
+			it = new Item(itemName, isCold, weight);
+		}
+		
 		for (int i = 0; i < amount; i++)
 		{
 			pickUpItem();
