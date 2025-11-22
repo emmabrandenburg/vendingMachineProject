@@ -1,23 +1,55 @@
-Class section
+class station
 {
-	Int xPos;
-	Int yPos;
-	station st[];
+	int xPos;
+	int yPos;
+	int zPos;
+	int capacity;
+	Item it[];
 
-  //default constructor
-	public section()
+	public station()
 	{
 		xPos = 0;
 		yPos = 0;
-		St = new station[4];
-
-    //sets each respective station to same location as left or right section
-    //levels each station from 1 to 4 in either left or right section
-		For (int i = 0; i < 4; i++)
-		{
-			st[i].setXPos(xPos);
-			st[i].setYPos(yPos);
-			st[i].setZPos(i+1);
-		}
+		zPos = 1;
+		it = new Item[8];
+		capacity = it.length;
 	}
+
+	//sets it to the same x coordinate of left or right section
+  	public void setXPos(int x)
+  	{
+    	xPos += x;
+  	}
+
+	//sets it to the same y coordinate of left or right section
+  	public void setYPos(int y)
+  	{
+    	yPos += y;
+  	}	
+
+	//used to level the stations from 1 to 4
+  	public void setZPos(int z)
+  	{
+    	zPos += z;
+  	}
+  	
+  	public int getXPos()
+  	{
+  		return xPos;
+  	}
+  	
+  	public int getYPos()
+  	{
+  		return yPos;
+  	}
+  	
+  	public int getZPos()
+  	{
+  		return zPos;
+  	}
+  	
+  	public int getCapacity()
+  	{
+  		return capacity;
+  	}
 }
