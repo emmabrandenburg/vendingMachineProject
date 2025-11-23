@@ -81,7 +81,7 @@ public class vendingMachine {
             for(i = 0; i < numItems; i++){
                 currItems[i] = new item(itemName, isCold, itemWeight);
             }
-            
+
             isr.close();
             br.close();
             //Returns Item data to be output to a file
@@ -93,7 +93,23 @@ public class vendingMachine {
         }
     }
 
-    public void storeItems(){
-
+    public String storeItems(Arm arm){
+        int i;
+        int[] cords;
+        int[] pickupStationCords = {0,0};
+        StringBuffer sb = new StringBuffer();
+            for (i = 0; i < currItems.length; i++){
+                arm.grabItem(currItems[i]);
+                arm.findItemSection(leftSection, rightSection);
+                cords = arm.findItemStation();
+                int slot = arm.findSlot(arm.getCurrStation());
+                arm.move(cords);
+                item placedItem = arm.placeItem(slot);
+                station currStation = arm.getCurrStation();
+                sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStation.getStationNum() + " in item slot " + slot + "\n");
+                arm.move(pickupStationCords);  
+            }
+            String storingData = String.valueOf(sb);
+            return storingData;
     }
 }

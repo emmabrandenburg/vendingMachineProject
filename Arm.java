@@ -16,7 +16,10 @@ public class Arm {
 
     // Methods
     // Moves the machine arm
-    public String move(int newX, int newY){
+    public String move(int[] cords){
+
+        int newX = cords[0];
+        int newY = cords[1];
         StringBuffer sb = new StringBuffer();
         String moveData;
         int spacesMovedX;
@@ -68,13 +71,15 @@ public class Arm {
 
     // Moves to pickup and grabs a specified Item
     public void grabItem(item grabbedItem){
-        move(0,0);
+        int[] pickupCords = {0,0};
+        move(pickupCords);
         currItem = grabbedItem;
     }
 
     // Places a specified Item
-    public item placeItem(){
+    public item placeItem(item itemToAdd, int itemSlot){
         item placedItem = currItem;
+        currStation.addItem(itemToAdd, itemSlot);
         currItem = null;
         return placedItem;
     }
@@ -161,5 +166,9 @@ public class Arm {
         currStation = selectedStation;
         currSlot = currStation.findItemSlot();
         return currSlot;
+    }
+
+    public station getCurrStation(){
+        return currStation;
     }
 }
