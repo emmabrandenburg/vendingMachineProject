@@ -12,7 +12,6 @@ class station
 	{
 		xPos = 0;
 		yPos = 0;
-		zPos = 1;
 		itemList = new Item[8];
 		capacity = itemList.length;
 		stationNum = 1;
