@@ -79,17 +79,19 @@ public class Arm {
 
     // Finds the right section for the Item
     public int findItemSection(){
-        String status = currItem.getStatusCode();
+        String status = currItem.getStatusCode(section section1, section section2);
 
         // Item belongs in left section
         if ((status.equals("s1")) || (currItem.coldCheck() == true) || (currItem.getWeight() < 50)){
-            return 1;
+
+            currSection = section1;
         }
 
         // Item belongs in right section
         else{
-            return 2;
+            currSection = section2;
         }
+        return currSection;
     }
 
 /* FIXME

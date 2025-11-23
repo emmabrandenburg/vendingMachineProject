@@ -6,6 +6,8 @@ class station
 	int capacity;
 	item itemList[];
 	int stationNum;
+	boolean isCold;
+	boolean isLight;
 
 	//creates defualt constructor for station object
 	public station()
@@ -14,7 +16,7 @@ class station
 		yPos = 0;
 		itemList = new item[8];
 		capacity = itemList.length;
-		stationNum = 1;
+		stationNum = -1;
 	}
 
 	public station(int x, int y, int number)
@@ -89,9 +91,10 @@ class station
 	}
 
 	//assigns special stations their needed values
-	private void stationAssign(int xLoc, int yLoc)
+	private void stationAssign(boolean cold, boolean light)
 	{
-		xPos = xLoc;
-		yPos = yLoc;
+		isCold = cold;
+		isLight = light;
+		
 	}
 }
