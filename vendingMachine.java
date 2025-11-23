@@ -2,13 +2,13 @@
  * FIXME
  * FIXME
  * 
- * Emma Brandenburg & _____
+ * Emma Brandenburg & Andrew Asumah
  * Created: 10/6/25
  * Modified: 
  * 11/22/25 - Added methods to vendingMachine
  * 
  * Purpose: Calculate the wage of employees.
- * Copyright 2025 by Emma Brandenburg & ____
+ * Copyright 2025 by Emma Brandenburg & Andrew Asumah
  *
  * Client: Professor Anwari CSC223
  * 
