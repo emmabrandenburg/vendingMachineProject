@@ -63,14 +63,14 @@ public class Arm {
     }
 
     // Moves to pickup and grabs a specified Item
-    public void grabItem(Item grabbedItem){
+    public void grabItem(item grabbedItem){
         move(0,0);
         currItem = grabbedItem;
     }
 
     // Places a specified Item
-    public Item placeItem(){
-        Item placedItem = currItem;
+    public item placeItem(){
+        item placedItem = currItem;
         currItem = null;
         return placedItem;
     }
@@ -91,8 +91,9 @@ public class Arm {
     }
 
 
-    public int findItemStation(){
-        boolean coldSpace = stationList[7].numItemCheck();
+    public int findItemStation(section currSection){
+        currStationList[] = currSection.getStationList();
+        boolean coldSpace = stationList[].numItemCheck();
         boolean weightSpace = stations[7].numItemCheck()
         int i;
         String currItemName = currItem.getItemName();

@@ -13,7 +13,7 @@ class section {
   }
 
   //Methods
-  public void defineStations(){
+  public void createStations(){
     if(sectionType == 1){
       stationList[0] = new station(0, 1, 1);
       stationList[1] = new station(0, 2, 3);
@@ -26,6 +26,14 @@ class section {
       stationList[2] = new station(1, 3, 6);
       stationList[3] = new station(1, 4, 8);
     }
+  }
+
+  public int getSectionType(){
+    return sectionType;
+  }
+
+  public station[] getStationList(){
+    return stationList;
   }
 
 
