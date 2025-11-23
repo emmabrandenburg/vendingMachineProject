@@ -19,6 +19,7 @@ class station
 		stationNum = -1;
 	}
 
+	//Constructor with values
 	public station(int x, int y, int number, boolean cold, boolean light)
 	{
 		xPos = x;
@@ -30,18 +31,7 @@ class station
 		isLight = light;
 	}
 
-	//sets it to the same x coordinate of left or right section
-  	public void setXPos(int x)
-  	{
-    	xPos = x;
-  	}
-
-	//sets it to the same y coordinate of left or right section
-  	public void setYPos(int y)
-  	{
-    	yPos = y;
-  	}	
-
+	//Returns Coordinates
 	public int[] getCords(){
 		int cords[] = {xPos, yPos};
 		return cords;
