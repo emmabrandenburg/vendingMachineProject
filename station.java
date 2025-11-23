@@ -91,7 +91,7 @@ class station
 	}
 
 	//assigns special stations their needed values
-	private void stationAssign(boolean cold, boolean light)
+	public void stationAssign(boolean cold, boolean light)
 	{
 		isCold = cold;
 		isLight = light;
