@@ -81,7 +81,9 @@ public class vendingMachine {
             for(i = 0; i < numItems; i++){
                 currItems[i] = new item(itemName, isCold, itemWeight);
             }
-
+            
+            isr.close();
+            br.close();
             //Returns Item data to be output to a file
             return String.valueOf(sb);
         }
