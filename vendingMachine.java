@@ -26,7 +26,6 @@ public class vendingMachine {
     section rightSection;
     String outputData;
 
-
     // Create machine components
     public vendingMachine(){
         arm = new Arm();
@@ -38,9 +37,7 @@ public class vendingMachine {
 
     // Empty 5th station into the refrigeration container
     public void code25(){
-        /*
         
-        */
     }
 
     public String createItems(){
@@ -98,18 +95,18 @@ public class vendingMachine {
         int[] cords;
         int[] pickupStationCords = {0,0};
         StringBuffer sb = new StringBuffer();
-            for (i = 0; i < currItems.length; i++){
-                arm.grabItem(currItems[i]);
-                arm.findItemSection(leftSection, rightSection);
-                cords = arm.findItemStation();
-                int slot = arm.findSlot(arm.getCurrStation());
-                arm.move(cords);
-                item placedItem = arm.placeItem(slot);
-                station currStation = arm.getCurrStation();
-                sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStation.getStationNum() + " in item slot " + slot + "\n");
-                arm.move(pickupStationCords);  
-            }
-            String storingData = String.valueOf(sb);
-            return storingData;
+        for (i = 0; i < currItems.length; i++){
+            arm.grabItem(currItems[i]);
+            arm.findItemSection(leftSection, rightSection);
+            cords = arm.findItemStation();
+            int slot = arm.findSlot(arm.getCurrStation());
+            arm.move(cords);
+            item placedItem = arm.placeItem(slot);
+            station currStation = arm.getCurrStation();
+            sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStation.getStationNum() + " in item slot " + slot + "\n");
+            arm.move(pickupStationCords);  
+        }
+        String storingData = String.valueOf(sb);
+        return storingData;
     }
 }
