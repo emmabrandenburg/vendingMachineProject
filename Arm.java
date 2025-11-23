@@ -2,6 +2,8 @@ public class Arm {
     int currX;
     int currY;
     item currItem;
+    int selectedSectionType;
+    section currSection;
 
     // Constructor
     Arm(){
@@ -80,7 +82,7 @@ public class Arm {
         String status = currItem.getStatusCode();
 
         // Item belongs in left section
-        if (status.equals("s1")){
+        if ((status.equals("s1")) || (currItem.coldCheck() == true) || (currItem.getWeight() < 50)){
             return 1;
         }
 
@@ -90,16 +92,24 @@ public class Arm {
         }
     }
 
+/* FIXME
 
-    public int findItemStation(section currSection){
-        currStationList[] = currSection.getStationList();
-        boolean coldSpace = stationList[].numItemCheck();
-        boolean weightSpace = stations[7].numItemCheck()
-        int i;
+    public int findItemStation(){
+        //Section and stationList info
+        section currSection =
+        station currStationlist[] = currItemSection.getStationList();
+
+        //Item Info
         String currItemName = currItem.getItemName();
         boolean isCold = currItem.coldCheck();
         double weight = currItem.getWeight();
-        int itemSection = findItemSection();
+
+        // If the section is the left section (stations 1, 3, 5, & 7)
+        if(currSection.getSectionType() == 1){
+            boolean coldSpace = currStationlist[5].numItemCheck();
+            boolean weightSpace = currStationlist[7].numItemCheck();
+        }
+        
 
         // Item belongs in cold station
         if (isCold == true){
@@ -162,4 +172,5 @@ public class Arm {
             return -1;
         }
     }
+        */
 }

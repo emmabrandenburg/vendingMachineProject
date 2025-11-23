@@ -19,11 +19,17 @@ import java.util.Scanner;
 
 public class vendingMachine {
     Arm arm;
-    Item[] currItems;
+    item[] currItems;
+    section leftSection;
+    section rightSection;
 
     public vendingMachine(){
         arm = new Arm();
-        createMachine();
+        
+        leftSection = new section(1);
+        rightSection = new section(2);
+        leftSection.createStations();
+        rightSection.createStations();
     }
 
     // Empty 5th station into the refrigeration container
@@ -33,19 +39,13 @@ public class vendingMachine {
         */
     }
 
-    public void createMachine(){
-        /*
-
-        Section leftSection = new Section(1);
-        Section rightSection = new Section(2);
-
-        leftSection.createStations(even);
-        rightSection.createStations(odd);
-
-        Station pickUp = new Station(p);
-        Station fridge = new Station(f);
-
-        */
+    public section getSection(int type){
+        if(type == 1){
+            return leftSection;
+        }
+        else{
+            return rightSection;
+        }
     }
 
     public String[] createItem(){
