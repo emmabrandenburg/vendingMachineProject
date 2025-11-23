@@ -77,9 +77,9 @@ public class Arm {
     }
 
     // Places a specified Item
-    public item placeItem(item itemToAdd, int itemSlot){
+    public item placeItem(int itemSlot){
         item placedItem = currItem;
-        currStation.addItem(itemToAdd, itemSlot);
+        currStation.addItem(currItem, itemSlot);
         currItem = null;
         return placedItem;
     }
@@ -100,6 +100,7 @@ public class Arm {
         }
     }
 
+    // Returns coordinates of a station
     public int[] findItemStation(){
         //Section and stationList info
         station stationOptions[] = currItemSection.getStationList();
@@ -151,7 +152,7 @@ public class Arm {
             }
         }
 
-        // Sets the direction to the pickupStation
+        // Sets the direction to the pickup station if there is no room for your item
         else{
             System.out.println("There is no slot left for your item.");
             Arrays.fill(nextCords, 0);
