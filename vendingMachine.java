@@ -15,17 +15,21 @@
  * Components: FIXME
  */
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class vendingMachine {
     Arm arm;
     item[] currItems;
     section leftSection;
     section rightSection;
+    String outputData;
 
+
+    // Create machine components
     public vendingMachine(){
         arm = new Arm();
-        
         leftSection = new section(1);
         rightSection = new section(2);
         leftSection.createStations();
@@ -39,31 +43,52 @@ public class vendingMachine {
         */
     }
 
-    public section getSection(int type){
-        if(type == 1){
-            return leftSection;
-        }
-        else{
-            return rightSection;
-        }
-    }
+    public String createItems(){
+        try{
+            StringBuffer sb = new StringBuffer();
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+            int numItems;
+            int i;
+            String itemName;
+            Double itemWeight;
+            String answerCold;
+            boolean isCold;
 
-    public String[] createItem(){
-        Scanner scnr = new Scanner(System.in);
-        int i;
-        String itemName;
-        Double itemWeight;
-        char answerCold;
-        boolean isCold;
+            //User inputs
+            System.out.println("What is your items name?");
+            itemName = br.readLine();
+            sb.append(itemName).append(", with a weight of");
+            System.out.println("What is your items weight?");
+            itemWeight = Double.valueOf(br.readLine());
+            sb.append(itemWeight).append("kg, and it is ");
+            System.out.println("Does your item need to be stored at a cold temperature? (please enter y or n)");
+            answerCold = br.readLine();
+            if (answerCold.equals("y")){
+                sb.append("cold.");
+                isCold = true;
+            }
+            else{
+                sb.append("not cold.");
+                isCold = false;
+            }
+            sb.append(br.readLine()).append(", ");
+            System.out.println("How many items would you like to create?");
+            numItems = Integer.valueOf(br.readLine());
 
-        System.out.println("What is your items name?");
-        itemName = scnr.nextLine();
-        System.out.println("What is your items weight?");
-        itemWeight = scnr.nextDouble();
-        System.out.println("Does your item need to be stored at a cold temperature? (please enter y or n)");
-        answerCold = scnr.next().charAt(0);
-        System.out.println("How many items would you like to create?");
-        i = scnr.nextInt();
+            //Creates wanted number of items
+            currItems = new item[numItems];
+            for(i = 0; i < numItems; i++){
+                currItems[i] = new item(itemName, isCold, itemWeight);
+            }
+
+            //Returns Item data to be output to a file
+            return String.valueOf(sb);
+        }
+        catch(IOException ex){
+            System.out.println("Error");
+            return("Error");
+        }
     }
 
     public void storeItems(){

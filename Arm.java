@@ -144,7 +144,6 @@ public class Arm {
             else if(stationOptions[3].numItemCheck() == true){
                 nextCords = stationOptions[3].getCords();
             }
-        
         }
 
         // Sets the direction to the pickupStation
