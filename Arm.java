@@ -14,12 +14,18 @@ public class Arm {
     }
 
     // Methods
+    // Method that moves the machine arm
     public String move(int newX, int newY){
         StringBuffer sb = new StringBuffer();
         String moveData;
         int spacesMovedX;
         int spacesMovedY;
 
+        if((newX == 0) && (newY == 0)){
+            currX = newX;
+            currY = newY;
+            return "The arm moved back to the pickup station";
+        }
         //Moving right or left
         if (currX > newX){
             spacesMovedX = currX - newX;
@@ -51,8 +57,7 @@ public class Arm {
     }
 
     public void grabItem(Item grabbedItem){
-        currX = 0;
-        currY = 0;
+        move(0,0);
         currItem = grabbedItem;
     }
 
@@ -66,7 +71,7 @@ public class Arm {
         String status = currItem.getStatusCode();
 
         // Item belongs in left section
-        if (status == "s1"){
+        if (status.equals("s1")){
             return 1;
         }
 
