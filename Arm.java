@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class Arm {
     int currX;
     int currY;
@@ -14,18 +11,27 @@ public class Arm {
     }
 
     // Methods
-    // Method that moves the machine arm
+    // Moves the machine arm
     public String move(int newX, int newY){
         StringBuffer sb = new StringBuffer();
         String moveData;
         int spacesMovedX;
         int spacesMovedY;
 
+        //Moving back to Pickup Station
         if((newX == 0) && (newY == 0)){
             currX = newX;
             currY = newY;
             return "The arm moved back to the pickup station";
         }
+
+        //Moving to the cooler
+        if((newX == 1) && (newY == 0)){
+            currX = newX;
+            currY = newY;
+            return "The arm moved to the cooler";
+        }
+
         //Moving right or left
         if (currX > newX){
             spacesMovedX = currX - newX;
