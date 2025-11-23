@@ -19,13 +19,15 @@ class station
 		stationNum = -1;
 	}
 
-	public station(int x, int y, int number)
+	public station(int x, int y, int number, boolean cold, boolean light)
 	{
 		xPos = x;
 		yPos = y;
 		itemList = new item[8];
 		capacity = itemList.length;
 		stationNum = number;
+		isCold = cold;
+		isLight = light;
 	}
 
 	//sets it to the same x coordinate of left or right section
@@ -40,17 +42,10 @@ class station
     	yPos = y;
   	}	
 
-	//returns xPos
-  	public int getXPos()
-  	{
-  		return xPos;
-  	}
-
-	//returns yPos
-  	public int getYPos()
-  	{
-  		return yPos;
-  	}
+	public int[] getCords(){
+		int cords[] = {xPos, yPos};
+		return cords;
+	}
 
 	//returns length of itemList
   	public int getCapacity()
@@ -88,13 +83,5 @@ class station
 	public int getStationNum()
 	{
 		return stationNum;
-	}
-
-	//assigns special stations their needed values
-	public void stationAssign(boolean cold, boolean light)
-	{
-		isCold = cold;
-		isLight = light;
-		
 	}
 }

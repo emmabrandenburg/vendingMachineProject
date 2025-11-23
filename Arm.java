@@ -1,9 +1,11 @@
+import java.util.Arrays;
+
 public class Arm {
     int currX;
     int currY;
     item currItem;
-    int selectedSectionType;
-    section currSection;
+    section currItemSection;
+    station currStation;
 
     // Constructor
     Arm(){
@@ -78,101 +80,87 @@ public class Arm {
     }
 
     // Finds the right section for the Item
-    public int findItemSection(){
-        String status = currItem.getStatusCode(section section1, section section2);
+    public void findItemSection(section section1, section section2){
+        String status = currItem.getStatusCode();
 
         // Item belongs in left section
         if ((status.equals("s1")) || (currItem.coldCheck() == true) || (currItem.getWeight() < 50)){
 
-            currSection = section1;
+            currItemSection = section1;
         }
 
         // Item belongs in right section
         else{
-            currSection = section2;
+            currItemSection = section2;
         }
-        return currSection;
     }
 
-/* FIXME
-
-    public int findItemStation(){
+    public int[] findItemStation(){
         //Section and stationList info
-        section currSection =
-        station currStationlist[] = currItemSection.getStationList();
+        station stationOptions[] = currItemSection.getStationList();
 
         //Item Info
-        String currItemName = currItem.getItemName();
         boolean isCold = currItem.coldCheck();
         double weight = currItem.getWeight();
-
-        // If the section is the left section (stations 1, 3, 5, & 7)
-        if(currSection.getSectionType() == 1){
-            boolean coldSpace = currStationlist[5].numItemCheck();
-            boolean weightSpace = currStationlist[7].numItemCheck();
-        }
-        
+        int[] nextCords = new int[2];
 
         // Item belongs in cold station
-        if (isCold == true){
-            return 5;
+        if (isCold == true && stationOptions[2].numItemCheck()){
+            nextCords = stationOptions[2].getCords();
         }
 
         // Item belongs in light weight station
-        else if(weight < 50){
-            return 7;
+        else if(weight < 50 && stationOptions[3].numItemCheck()){
+            nextCords = stationOptions[3].getCords();
         }
 
-        else if (itemSection == 1){
+        //Item belongs in any other station
+        else if (currItemSection.getSectionType() == 1){
           
-            // Checks if a station is full, and place an item if it's not
-            if (section1.numItemCheck() == true){
-                itemSlot = station.findItemSlot();
-                return 1;
+            if (stationOptions[0].numItemCheck() == true){
+                nextCords = stationOptions[0].getCords();
             }
 
-            else if(section3.numItemCheck() == true){
-                itemSlot = station.findItemSlot();
-                return 3;
+            else if(stationOptions[1].numItemCheck() == true){
+                nextCords = stationOptions[1].getCords();
             }
-
-            else if(section5.numItemCheck() == true){
-                itemSlot = station.findItemSlot();
-                return 5;
-            }
-        
         }
 
-        else if (itemSection == 2){
+        else if (currItemSection.getSectionType() == 2){
           
             // Checks if a station is full, returns section if its not
-            if (section2.numItemCheck() == false){
-                itemSlot = station.findItemSlot();
-                return 2;
+            if (stationOptions[0].numItemCheck() == true){
+                nextCords = stationOptions[0].getCords();
             }
 
-            else if(section4.numItemCheck() == false){
-                itemSlot = station.findItemSlot();
-                return 4;
+            else if(stationOptions[1].numItemCheck() == true){
+                nextCords = stationOptions[1].getCords();
             }
 
-            else if(section6.numItemCheck() == false){
-                itemSlot = station.findItemSlot();
-                return 6;
+            else if(stationOptions[2].numItemCheck() == true){
+                nextCords = stationOptions[2].getCords();
             }
 
-            else if(section8.numItemCheck() == false){
-                itemSlot = station.findItemSlot();
-                return 8;
+            else if(stationOptions[3].numItemCheck() == true){
+                nextCords = stationOptions[3].getCords();
             }
         
         }
 
-        // Returns -1 if there are no slots available for an item
+        // Sets the direction to the pickupStation
         else{
             System.out.println("There is no slot left for your item.");
-            return -1;
+            Arrays.fill(nextCords, 0);
         }
+
+        return nextCords;
     }
-        */
+
+    // Finds an item slot in a station
+    public int findSlot(station selectedStation){
+        int currSlot;
+        currStation = selectedStation;
+        currSlot = currStation.findItemSlot();
+        return currSlot;
+    }
 }
