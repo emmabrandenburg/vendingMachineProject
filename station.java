@@ -4,7 +4,7 @@ class station
 	int xPos;
 	int yPos;
 	int capacity;
-	Item itemList[];
+	item itemList[];
 	int stationNum;
 
 	//creates defualt constructor for station object
@@ -12,9 +12,18 @@ class station
 	{
 		xPos = 0;
 		yPos = 0;
-		itemList = new Item[8];
+		itemList = new item[8];
 		capacity = itemList.length;
 		stationNum = 1;
+	}
+
+	public station(int x, int y, int number)
+	{
+		xPos = x;
+		yPos = y;
+		itemList = new item[8];
+		capacity = itemList.length;
+		stationNum = number;
 	}
 
 	//sets it to the same x coordinate of left or right section

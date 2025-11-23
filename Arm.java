@@ -1,7 +1,7 @@
 public class Arm {
     int currX;
     int currY;
-    Item currItem;
+    item currItem;
 
     // Constructor
     Arm(){
@@ -62,17 +62,20 @@ public class Arm {
         return moveData;
     }
 
+    // Moves to pickup and grabs a specified Item
     public void grabItem(Item grabbedItem){
         move(0,0);
         currItem = grabbedItem;
     }
 
+    // Places a specified Item
     public Item placeItem(){
         Item placedItem = currItem;
         currItem = null;
         return placedItem;
     }
 
+    // Finds the right section for the Item
     public int findItemSection(){
         String status = currItem.getStatusCode();
 
@@ -86,10 +89,11 @@ public class Arm {
             return 2;
         }
     }
-    /*
+
+
     public int findItemStation(){
-        // possibly boolean coldSpace = stationCold.numItemCheck()
-        // possibly boolean weightSpace = stationLight.numItemCheck()
+        boolean coldSpace = stationList[7].numItemCheck();
+        boolean weightSpace = stations[7].numItemCheck()
         int i;
         String currItemName = currItem.getItemName();
         boolean isCold = currItem.coldCheck();
@@ -157,5 +161,4 @@ public class Arm {
             return -1;
         }
     }
-    */
 }

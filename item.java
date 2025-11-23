@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Item {
+public class item {
     String itemName;
     int serialNum;
     boolean coldCheck;
@@ -8,7 +8,7 @@ public class Item {
     String statusCode;
 
     // Default constructor
-    public Item(){
+    public item(){
         itemName = null;
         coldCheck = false;
         weight = 0.0;
@@ -17,7 +17,7 @@ public class Item {
     }
 
     // Constructor with inputs
-    public Item(String name, boolean cold, double kilograms){
+    public item(String name, boolean cold, double kilograms){
         itemName = name;
         coldCheck = cold;
         weight = kilograms;
