@@ -75,9 +75,6 @@ class station
 		return stationNum;
 	}
 
-	public station getStation(){
-		return this;
-	}
 
 	// Adds an item to a station
 	public void addItem(item newItem, int itemSlot){
