@@ -181,7 +181,7 @@ public class Arm {
     }
 
     // Returns true if the cooler is full
-    public boolean checkCooler(station cooler){
+    public boolean checkCooler(){
         int[] coolerCords = {0,1};
         move(coolerCords);
         setCurrStation(coolerCords);

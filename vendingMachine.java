@@ -166,11 +166,9 @@ public class vendingMachine {
                 if(userChoice.equals("y")){
                     sb.append(myMachine.createItems());
                     sb.append(myMachine.storeItems());
-                    /* FIXME - call code25 if cooler is full
-                    if(currArm.checkCooler(currArm.move()) == false){
+                    if(currArm.checkCooler() == false){
                         myMachine.code25();
                     }
-                        */
                 }
                 else{
                     String fullData = String.valueOf(sb);
