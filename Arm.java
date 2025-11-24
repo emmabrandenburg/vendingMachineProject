@@ -71,8 +71,6 @@ public class Arm {
 
     // Moves to pickup and grabs a specified Item
     public void grabItem(item grabbedItem){
-        int[] pickupCords = {0,0};
-        move(pickupCords);
         currItem = grabbedItem;
     }
 
@@ -172,4 +170,47 @@ public class Arm {
     public station getCurrStation(){
         return currStation;
     }
+
+    /*
+    public void setCurrStation(int[] cords){
+        String x = String.valueOf(cords[0]);
+        String y = String.valueOf(cords[1]);
+        String stringCords =  x + "" + y;
+        
+        switch(stringCords){
+            case "10":
+                currStationNum = 0;
+            case "01":
+                currStationNum = 1;
+            case "11":
+                currStationNum = 2;
+            case "02":
+                currStationNum = 3;
+            case "12":
+                currStationNum = 4;
+            case "03":
+                currStationNum = 5;
+            case "13":
+                currStationNum = 6;
+            case "04":
+                currStationNum = 7;
+            case "14":
+                currStationNum = 8;
+        }
+    }
+
+    // Returns true if the cooler is full
+    public boolean checkCooler(station cooler){
+        int[] coolerCords = {0,1};
+        move(coolerCords);
+        
+        boolean isSpace = coolerStation.numItemCheck();
+        if(isSpace == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+        */
 }

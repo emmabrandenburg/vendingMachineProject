@@ -79,4 +79,8 @@ class station
 	public void addItem(item newItem, int itemSlot){
 		itemList[itemSlot] = newItem;
 	}
+
+	public item[] getItemList(){
+		return itemList;
+	}
 }
