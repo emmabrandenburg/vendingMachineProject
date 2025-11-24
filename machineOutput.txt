@@ -1,0 +1,55 @@
+You've created Drinks with a weight of 70.0kg. It is cold. You have created 20 of them.
+The arm placed Drinks in station 5 in item slot 1
+The arm placed Drinks in station 5 in item slot 2
+The arm placed Drinks in station 5 in item slot 3
+The arm placed Drinks in station 5 in item slot 4
+The arm placed Drinks in station 5 in item slot 5
+The arm placed Drinks in station 5 in item slot 6
+The arm placed Drinks in station 5 in item slot 7
+The arm placed Drinks in station 5 in item slot 8
+Station 5 is full
+Fridge is full. Could not place the rest of the refrigeratables.
+You've created Cheetos with a weight of 30.0kg. It is not cold. You have created 15 of them.
+The arm placed Cheetos in station 7 in item slot 1
+The arm placed Cheetos in station 7 in item slot 2
+The arm placed Cheetos in station 7 in item slot 3
+The arm placed Cheetos in station 7 in item slot 4
+The arm placed Cheetos in station 7 in item slot 5
+The arm placed Cheetos in station 7 in item slot 6
+The arm placed Cheetos in station 7 in item slot 7
+The arm placed Cheetos in station 7 in item slot 8
+The arm placed Cheetos in station 1 in item slot 1
+The arm placed Cheetos in station 1 in item slot 2
+The arm placed Cheetos in station 1 in item slot 3
+The arm placed Cheetos in station 1 in item slot 4
+The arm placed Cheetos in station 1 in item slot 5
+The arm placed Cheetos in station 1 in item slot 6
+The arm placed Cheetos in station 1 in item slot 7
+You've created Doritos with a weight of 50.0kg. It is not cold. You have created 25 of them.
+The arm placed Doritos in station 1 in item slot 8
+The arm placed Doritos in station 2 in item slot 1
+The arm placed Doritos in station 2 in item slot 2
+The arm placed Doritos in station 2 in item slot 3
+The arm placed Doritos in station 2 in item slot 4
+The arm placed Doritos in station 2 in item slot 5
+The arm placed Doritos in station 3 in item slot 1
+The arm placed Doritos in station 3 in item slot 2
+The arm placed Doritos in station 2 in item slot 6
+The arm placed Doritos in station 3 in item slot 3
+The arm placed Doritos in station 2 in item slot 7
+The arm placed Doritos in station 2 in item slot 8
+The arm placed Doritos in station 3 in item slot 4
+The arm placed Doritos in station 4 in item slot 1
+The arm placed Doritos in station 3 in item slot 5
+The arm placed Doritos in station 4 in item slot 2
+The arm placed Doritos in station 3 in item slot 6
+The arm placed Doritos in station 4 in item slot 3
+The arm placed Doritos in station 4 in item slot 4
+The arm placed Doritos in station 4 in item slot 5
+The arm placed Doritos in station 4 in item slot 6
+The arm placed Doritos in station 4 in item slot 7
+The arm placed Doritos in station 3 in item slot 7
+The arm placed Doritos in station 4 in item slot 8
+The arm placed Doritos in station 3 in item slot 8
+The arm placed Doritos in station 6 in item slot 1
+

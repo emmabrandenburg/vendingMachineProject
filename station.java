@@ -61,7 +61,7 @@ class station
 	{
 		for (int i = 0; i < capacity; i++)
 		{
-			if (numItemCheck() == true)
+			if (itemList[i] == null)
 			{
 				return i + 1;
 			}
@@ -74,7 +74,6 @@ class station
 	{
 		return stationNum;
 	}
-
 
 	// Adds an item to a station
 	public void addItem(item newItem, int itemSlot){

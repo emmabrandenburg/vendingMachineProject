@@ -56,23 +56,6 @@ public class item {
         return coldCheck;
     }
 
-    public String getItemData(){
-        String[] itemArrayData = new String[4];
-        itemArrayData[0] = itemName;
-        itemArrayData[1] = String.valueOf(serialNum);
-        itemArrayData[2] = weight + "kg";
-        if(coldCheck == true){
-            itemArrayData[3] = "cold";
-        }
-        else{
-            itemArrayData[3] = "room-temp";
-        }
-
-        String ItemData = String.join(", ", itemArrayData);
-
-        return ItemData;
-    }
-
     // private Item method
     private int serialGenerator(boolean ifCold){
         Random random = new Random();

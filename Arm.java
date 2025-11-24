@@ -4,14 +4,28 @@ public class Arm {
     int currX;
     int currY;
     item currItem;
-    section currItemSection;
+    section currSection;
     station currStation;
 
+    // Basic navigation variables
+    section leftSection;
+    section rightSection;
+    station pickUp;
+    station fridge;
+
     // Constructor
-    Arm(){
+    Arm(section left, section right, station pick, station freeze){
         currX = 0;
         currY = 0;
         currItem = null;
+
+        leftSection = left;
+        rightSection = right;
+        pickUp = pick;
+        fridge = freeze;
+
+        currStation = pickUp;
+        currSection = leftSection;
     }
 
     // Methods
@@ -76,32 +90,43 @@ public class Arm {
 
     // Places a specified Item
     public item placeItem(int itemSlot){
-        item placedItem = currItem;
-        currStation.addItem(currItem, itemSlot);
-        currItem = null;
-        return placedItem;
+        if(itemSlot != -2){
+            item placedItem = currItem;
+            currStation.addItem(currItem, itemSlot);
+            currItem = null;
+            return placedItem;
+        }
+        else{
+            int[] newStationCords = findNextStation();
+            move(newStationCords);
+            item placedItem = currItem;
+            currStation.addItem(currItem, itemSlot);
+            currItem = null;
+            return placedItem;
+        }
+
     }
 
     // Finds the right section for the Item
-    public void findItemSection(section section1, section section2){
+    public void findItemSection(section left, section right){
         String status = currItem.getStatusCode();
 
         // Item belongs in left section
         if ((status.equals("s1")) || (currItem.coldCheck() == true) || (currItem.getWeight() < 50)){
 
-            currItemSection = section1;
+            currSection = left;
         }
 
         // Item belongs in right section
         else{
-            currItemSection = section2;
+            currSection = right;
         }
     }
 
     // Returns coordinates of a station
     public int[] findItemStation(){
         //Section and stationList info
-        station stationOptions[] = currItemSection.getStationList();
+        station stationOptions[] = currSection.getStationList();
 
         //Item Info
         boolean isCold = currItem.coldCheck();
@@ -119,7 +144,7 @@ public class Arm {
         }
 
         //Item belongs in any other station
-        else if (currItemSection.getSectionType() == 1){
+        else if (currSection.getSectionType() == 1){
           
             if (stationOptions[0].numItemCheck() == true){
                 nextCords = stationOptions[0].getCords();
@@ -130,7 +155,7 @@ public class Arm {
             }
         }
 
-        else if (currItemSection.getSectionType() == 2){
+        else if (currSection.getSectionType() == 2){
           
             // Checks if a station is full, returns section if its not
             if (stationOptions[0].numItemCheck() == true){
@@ -172,7 +197,7 @@ public class Arm {
     }
 
     public void setCurrStation(int[] cords){
-        for(station curr : currItemSection.getStationList()){
+        for(station curr : currSection.getStationList()){
             int[] stationCords = curr.getCords();
             if(stationCords[0] == cords[0] && stationCords[1] == cords[1]){
                 currStation = curr;
@@ -194,4 +219,34 @@ public class Arm {
             return false;
         }
     }
+
+    public int[] findNextStation(){
+        station[] sectionOptions = currSection.getStationList();
+        int i;
+        int j;
+        for(i = 0; i < sectionOptions.length; i++){
+            item[] items = sectionOptions[i].getItemList();
+            for(j = 0; j < items.length; j++){
+                if(items[j] == null){
+                    setCurrStation(sectionOptions[i].getCords());
+                    return sectionOptions[i].getCords();
+                }
+            }
+        }
+        return null;
+    }
+
+
+	public station getStation(){
+        int[] currCords = findItemStation();
+		int i;
+		for(i = 0; i < currSection.getStationList().length; i++){
+            int[] currSectionCords = currSection.getStationList()[i].getCords();
+            if(currSectionCords[0] == currCords[0] && currSectionCords[1] == currCords[1]){
+                station foundStation = currSection.getStationList()[i];
+                return foundStation;
+            } 
+		}
+        return null;
+	}
 }

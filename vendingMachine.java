@@ -25,20 +25,29 @@ public class vendingMachine {
     item[] currItems;
     section leftSection;
     section rightSection;
+    section currSection;
     station fridge;
+    station pickUp;
+    station currStation;
     String outputData;
+    int currStationNum;
     int itemCount;
-    int[] pickupStationCords = {0, 0};
-    int[] fridgeStationCords = {0,1};
 
     // Create machine components
     public vendingMachine(){
-        arm = new Arm();
+        // Machine components
         leftSection = new section(1);
         rightSection = new section(2);
         fridge = new station(1, 0, 0, true, false);
+        pickUp = new station(0,0, -1, false, false);
         leftSection.createStations();
         rightSection.createStations();
+        arm = new Arm(leftSection, rightSection, pickUp, fridge);
+
+        // Assigning where arm should start
+        currSection = leftSection;
+        currStation = pickUp;
+
     }
 
     // Empty 5th station into the refrigeration container
@@ -51,8 +60,13 @@ public class vendingMachine {
         arm.move(coldSectionCords);
         for(i = 0; i < coldItems.length; i++){
             arm.grabItem(coldItems[i]);
-            arm.move(fridgeStationCords);
+            arm.move(fridge.getCords());
+            arm.setCurrStation(fridge.getCords());
             int slot = arm.findSlot(arm.getCurrStation());
+
+            if(slot == -1){
+                return "Fridge is full. Could not place the rest of the refrigeratables.\n";
+            }
             arm.placeItem(slot - 1);
             arm.move(coldSectionCords);
         }
@@ -77,23 +91,23 @@ public class vendingMachine {
             //User inputs
             System.out.println("What is your items name?");
             itemName = br.readLine();
-            sb.append(itemName).append(", with a weight of");
+            sb.append("You've created " + itemName + " with a weight of ");
             System.out.println("What is your items weight?");
             itemWeight = Double.valueOf(br.readLine());
-            sb.append(itemWeight).append("kg, and it is ");
+            sb.append(itemWeight).append("kg. It is ");
             System.out.println("Does your item need to be stored at a cold temperature? (please enter y or n)");
             answerCold = br.readLine();
             if (answerCold.equals("y")){
-                sb.append("cold.");
+                sb.append("cold. ");
                 isCold = true;
             }
             else{
-                sb.append("not cold.");
+                sb.append("not cold. ");
                 isCold = false;
             }
-            sb.append(br.readLine()).append(", ");
             System.out.println("How many items would you like to create?");
             numItems = Integer.valueOf(br.readLine());
+            sb.append("You have created ").append(numItems).append(" of them.\n");
 
             //Creates wanted number of items
             currItems = new item[numItems];
@@ -102,9 +116,8 @@ public class vendingMachine {
                 itemCount += 1;
             }
 
-            isr.close();
-            br.close();
             //Returns Item data to be output to a file
+            System.out.println("You've created " + numItems + " " + itemName + " items");
             return String.valueOf(sb);
         }
         catch(IOException ex){
@@ -121,18 +134,54 @@ public class vendingMachine {
 
         for (i = 0; i < currItems.length; i++){
             arm.grabItem(currItems[i]);
-            station currStation = arm.getCurrStation();
-            int currStationNum = currStation.getStationNum();
+            item currItem = currItems[i];
+            station targetStation;
 
-            // Find section, station, and item slot and move the arm to the correct place
-            arm.findItemSection(leftSection, rightSection);
-            cords = arm.findItemStation();
-            int slot = arm.findSlot(arm.getCurrStation());
-            arm.move(cords);
+            // For cold Items
+            if(currItem.coldCheck()){
+                targetStation = leftSection.getStationList()[2];
+                cords = targetStation.getCords();
+                arm.move(cords);
+                arm.setCurrStation(cords);
+
+                int slot = arm.findSlot(targetStation);
+                if(slot == -1){
+                    sb.append("Station " + targetStation.getStationNum() + " is full\n");
+                    sb.append(code25());
+                    slot = arm.findSlot(targetStation);
+                    if(slot == -1){
+                        break;
+                    }
+                }
             item placedItem = arm.placeItem(slot - 1);
-            arm.setCurrStation(cords);
-            sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStationNum + " in item slot " + slot + "\n");
-            arm.move(pickupStationCords);  
+            sb.append("The arm placed " + placedItem.getItemName() + " in station " + arm.getCurrStation().getStationNum() + " in item slot " + slot + "\n");
+            }
+
+            //For non-cold items
+            else{
+                arm.findItemSection(leftSection, rightSection);
+                targetStation = arm.getStation();
+                if(targetStation == null){
+                    arm.findNextStation();
+                    station nextStation = arm.getStation();
+                    if(nextStation == null){
+                        sb.append("No station available for " + currItem.getItemName() + "\n");
+                        continue;
+                    }
+                
+                    arm.move(targetStation.getCords());
+                    arm.setCurrStation(targetStation.getCords());
+                }
+                int slot = arm.findSlot(targetStation);
+                if(slot == -1){
+                    sb.append("Station " + targetStation.getStationNum() + " is full\n");
+                    arm.findNextStation();
+                    continue;
+                }
+
+                item placedItem = arm.placeItem(slot - 1);
+                sb.append("The arm placed " + placedItem.getItemName() + " in station " + arm.getCurrStation().getStationNum() + " in item slot " + slot + "\n");
+            }
         }
         String storingData = String.valueOf(sb);
         return storingData;
@@ -172,11 +221,6 @@ public class vendingMachine {
                 if(userChoice.equals("y")){
                     sb.append(myMachine.createItems());
                     sb.append(myMachine.storeItems());
-
-                    // If the cooler is full, it empties
-                    if(currArm.checkCooler() == false){
-                        myMachine.code25();
-                    }
                 }
                 else{
                     // Output file created if user is finished
