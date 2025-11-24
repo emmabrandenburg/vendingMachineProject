@@ -16,7 +16,6 @@
  */
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -122,13 +121,17 @@ public class vendingMachine {
 
         for (i = 0; i < currItems.length; i++){
             arm.grabItem(currItems[i]);
+            station currStation = arm.getCurrStation();
+            int currStationNum = currStation.getStationNum();
+
+            // Find section, station, and item slot and move the arm to the correct place
             arm.findItemSection(leftSection, rightSection);
             cords = arm.findItemStation();
             int slot = arm.findSlot(arm.getCurrStation());
             arm.move(cords);
             item placedItem = arm.placeItem(slot - 1);
-            station currStation = arm.getCurrStation();
-            sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStation.getStationNum() + " in item slot " + slot + "\n");
+            arm.setCurrStation(cords);
+            sb.append("The arm placed " + placedItem.getItemName() + " in station " + currStationNum + " in item slot " + slot + "\n");
             arm.move(pickupStationCords);  
         }
         String storingData = String.valueOf(sb);
@@ -157,20 +160,26 @@ public class vendingMachine {
         boolean continueInput = true;
         vendingMachine myMachine = new vendingMachine();
         Arm currArm = myMachine.getArm();
+
         try{
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader br = new BufferedReader(isr);
+
+            // While the user wants to add more items
             while(continueInput == true){
                 System.out.println("Would you like to add items? (please enter y or n)");
                 String userChoice = br.readLine();
                 if(userChoice.equals("y")){
                     sb.append(myMachine.createItems());
                     sb.append(myMachine.storeItems());
+
+                    // If the cooler is full, it empties
                     if(currArm.checkCooler() == false){
                         myMachine.code25();
                     }
                 }
                 else{
+                    // Output file created if user is finished
                     String fullData = String.valueOf(sb);
                     myMachine.writeData("machineOutput.txt", fullData);
                     continueInput = false;
