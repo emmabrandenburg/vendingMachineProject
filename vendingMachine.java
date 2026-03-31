@@ -1,18 +1,23 @@
 /**
- * FIXME
- * FIXME
+ * This program allows a user to input items to be stored in a vending machine
+ * The program takes the data, and sorts it automatically, outputing a data file
  * 
  * Emma Brandenburg & Andrew Asumah
- * Created: 10/6/25
- * Modified: 
- * 11/22/25 - Added methods to vendingMachine
+ * Created: 11/13/25
  * 
- * Purpose: Calculate the wage of employees.
+ * Modified: 
+ * 11/13/25 - Layed out general idea of code (framework)
+ * 11/16/25 - Fleshed out item, station, section, and arm classes
+ * 11/20/25 - started vendingMachine class and continued work on others
+ * 11/22/25 - Added major methods to vendingMachine
+ * 11/23/25 - Debugged
+ * 
+ * Purpose: Sort Items in a vending machine.
  * Copyright 2025 by Emma Brandenburg & Andrew Asumah
  *
  * Client: Professor Anwari CSC223
  * 
- * Components: FIXME
+ * Components: Methods to transfer information, read, write, and evaluate data.
  */
 
 import java.io.BufferedReader;
